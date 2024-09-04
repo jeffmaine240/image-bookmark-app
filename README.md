@@ -10,5 +10,5 @@ This **Social Media Application** is built using Django and provides users with 
 - **Following**: Users can follow other users to keep track of their activity and new posts.
 - **Commenting**: Users can comment on images, enabling discussion and interaction.
 - **User Action Tracking**: The application tracks user actions such as bookmarking, liking, and commenting.
-- **User Profiles**: Users can manage their profiles, view their own activities, and explore others' profiles.
+- **User Profiles**: Users can manage their profiles.
 - **Admin Panel**: Admins have access to a powerful Django admin panel for managing users, posts, and other site content.
