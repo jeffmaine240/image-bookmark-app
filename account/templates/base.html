@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static 'account/base.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <span class="logo">Bookmarks</span>
+    {% if request.user.is_authenticated %}
+      <ul class="menu">
+        <li {% if section == "dashboard" %}class="selected"{% endif %}>
+          <a href="{% url 'account:dashboard' %}">My dashboard</a>
+        </li>
+        <li {% if section == "images" %}class="selected"{% endif %}>
+          <a href="{% url 'images:lists' %}">Images</a>
+        </li>
+        <li {% if section == "people" %}class="selected"{% endif %}>
+          <a href="{% url 'account:user_list' %}">People</a>
+        </li>
+      </ul>
+    {% endif %}
+    <span class="user">
+      {% if request.user.is_authenticated %}
+        Hello {{ request.user.first_name|default:request.user.username }},
+          <a href="{% url 'account:logout' %}" >Log out</a>
+      {% else %}
+        <a href="{% url 'account:login' %}">Log in</a>
+      {% endif %}
+    </span>
+  </div>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">x</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script>
+    const csrftoken = Cookies.get('csrftoken');
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // DOM loaded
+      {% block domready %}
+      {% endblock %}
+    })
+  </script>
+</body>
+</html>
+
+
+
+{% comment %} https://jeffmaine.com:8000/images/create/?title=%20Django%20and%20Duke&url=https://upload.wikimedia.org/wikipedia/commons/8/85/Django_Reinhardt_and_Duke_Ellington_%28Gottlieb%29.jpg {% endcomment %}
