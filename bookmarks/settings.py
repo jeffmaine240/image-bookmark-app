@@ -31,6 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['jeffmaine.com', 'localhost', '127.0.0.1']
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login'
 LOGOUT_URL = 'account:logout'
